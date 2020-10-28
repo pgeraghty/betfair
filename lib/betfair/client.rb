@@ -14,8 +14,9 @@ module Betfair
                 :list_market_book, :list_competitions, :list_market_profit_and_loss,
                 :list_countries, :list_current_orders, :list_cleared_orders,
                 :list_market_types, :list_time_ranges, :list_venues, :place_orders,
-                :cancel_orders, :replace_orders, :update_orders],
-      account: [:get_account_funds]
+                :cancel_orders, :replace_orders, :update_orders, :list_runner_book],
+      account: [:get_account_funds, :get_account_statement, :get_account_details,
+                :get_developer_app_keys, :list_currency_rates, ]
     }
 
     attr_accessor :settings, :request_opts, :persistent_headers, :endpoint
