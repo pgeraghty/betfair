@@ -18,7 +18,8 @@ module Betfair
         obj.class::OPERATIONS.each do |api, operations|
           operations.each do |operation|
             define_method(operation) do |body = nil|
-              raise "Not signed in" unless ["X-Authentication", "X-Application"].all? { |k| persistent_headers.key?(k) }
+              raise "Invalid application key" unless persistent_headers.include?("X-Application")
+              raise "Not signed in" unless persistent_headers.include?("X-Authentication") || persistent_headers.include?("Authorization")
 
               post(url: "#{apis[api]}/#{operation.to_s.camelize(:lower)}/", body: body.to_json)
             end
